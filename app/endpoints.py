@@ -12,7 +12,7 @@ def process_push_event_from_salt_state_repo():
     app.logger.info('{}'.format(data))
     ref = data['ref']
     branch = ref.split('/')[-1]
-    r = requests.put('{}/states/{0}'.format(LISTENER, branch), json=data)
+    r = requests.put('{}/states/{}'.format(LISTENER, branch), json=data)
     app.logger.info('Forwarded to salt proxy listener with status: {}'.format(r.status))
     return '', 204
 
@@ -24,7 +24,7 @@ def process_push_event_from_salt_pillar_repo():
     app.logger.info('{}'.format(data))
     ref = data['ref']
     branch = ref.split('/')[-1]
-    r = requests.put('{}/pillars/{0}'.format(LISTENER, branch), json=data)
+    r = requests.put('{}/pillars/{}'.format(LISTENER, branch), json=data)
     app.logger.info('Forwarded to salt proxy listener with status: {}'.format(r.status))
     return '', 204
 
