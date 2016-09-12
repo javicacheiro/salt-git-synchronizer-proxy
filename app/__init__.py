@@ -24,10 +24,12 @@ def before_request():
             token = request.headers[token_header]
             if token == app.config['SECRET_TOKEN']:
                 app.logger.info('Validated request token')
-            app.logger.warn('Unauthorized: Invalid request token')
-        app.logger.warn('Unauthorized: No request token included')
-        return jsonify({'error': 'unauthorized'}), 401
-    app.logger.info('No authentication required')
+            else:
+                app.logger.warn('Unauthorized: Invalid request token')
+                return jsonify({'error': 'Invalid request token'}), 401
+        else:
+            app.logger.error('Unauthorized: No request token included')
+            return jsonify({'error': 'unauthorized'}), 401
 
 
 # register blueprints
