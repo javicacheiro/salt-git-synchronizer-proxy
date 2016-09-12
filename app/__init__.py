@@ -20,7 +20,7 @@ def before_request():
     """All routes in this blueprint require authentication."""
     if app.config['AUTH_REQUIRED']:
         if request.args.get('secret_token'):
-            token = request.headers.get('HTTP_X_GITLAB_TOKEN')
+            token = request.headers.get(app.config['TOKEN_HEADER'])
             if token == app.config['SECRET_TOKEN']:
                 app.logger.info('Validated request token')
             app.logger.warn('Unauthorized: Invalid request token')

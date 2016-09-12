@@ -52,3 +52,6 @@ https://<ADDRESS>/gitlab/v1/salt-state/events/push
 # salt-pillar repo
 https://<ADDRESS>/gitlab/v1/salt-pillar/events/push 
 ```
+
+Configure the appropriate Secret Token in config/production.py and in
+the webhook configuration.
